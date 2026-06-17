@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>藥劑科行動工作台</title>
+    <style>
+        :root {
+            --primary-bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-sub: #4b5563;
+            
+            /* 業務分類顏色 */
+            --color-record: #2563eb;  /* 藍色：一般紀錄 */
+            --color-clinical: #0d9488;/* 綠色：臨床業務 */
+            --color-alert: #dc2626;   /* 紅色：異常通報 */
+            --color-db: #7c3aed;      /* 紫色：資料庫 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            -webkit-tap-highlight-color: transparent; /* 移除手機點擊陰影 */
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            padding: 12px;
+            padding-bottom: 30px;
+        }
+
+        /* 標頭：手機端縮小高度 */
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        header h1 {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        header p {
+            font-size: 0.8rem;
+            opacity: 0.85;
+            margin-top: 2px;
+        }
+
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* 卡片之間的間距 */
+        }
+
+        /* 手機版核心：整塊卡片就是一個超大按鈕 */
+        .mobile-btn-card {
+            display: flex;
+            align-items: center;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 16px 14px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            border-left: 6px solid var(--color-record); /* 左側顏色條識別 */
+            transition: background-color 0.1s ease;
+        }
+
+        /* 手機手指按下去的觸感回饋 */
+        .mobile-btn-card:active {
+            background-color: #e5e7eb;
+        }
+
+        /* 右側箭頭圖示 */
+        .mobile-btn-card::after {
+            content: "➔";
+            font-size: 1.1rem;
+            color: #9ca3af;
+            margin-left: auto;
+            padding-left: 10px;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+        }
+
+        .card-content {
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+
+        /* 根據分類調整左側邊框顏色 */
+        .btn-db { border-left-color: var(--color-db); background-color: #faf5ff; }
+        .btn-db .card-title { color: #5b21b6; }
+        
+        .btn-clinical { border-left-color: var(--color-clinical); }
+        
+        .btn-alert { border-left-color: var(--color-alert); background-color: #fef2f2; }
+        .btn-alert .card-title { color: #991b1b; }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 標頭 -->
+    <header>
+        <h1>藥劑科行動工作台</h1>
+        <p>點擊下方卡片即可直接開啟表單</p>
+    </header>
+
+    <!-- 表單列表區 -->
+    <div class="list-container">
+
+        <!-- 留存資料庫 (排第一，方便查詢) -->
+        <a href="https://drive.google.com/drive/u/0/folders/1P3aCPh0efV4biYrsEpcFTtau2Spa5SL8" target="_blank" class="mobile-btn-card btn-db">
+            <div class="card-icon">📁</div>
+            <div class="card-content">
+                <div class="card-title">藥劑科各項表單留存資料</div>
+                <div class="card-desc">點此查詢歷史登記資料與統計結果</div>
+            </div>
+        </a>
+
+        <!-- 用藥指導 -->
+        <a href="https://forms.gle/swTjzvyWwZVrTfz3A" target="_blank" class="mobile-btn-card">
+            <div class="card-icon">📝</div>
+            <div class="card-content">
+                <div class="card-title">用藥指導紀錄單</div>
+                <div class="card-desc">病人用藥指導與衛教紀錄登記</div>
+            </div>
+        </a>
+
+        <!-- 藥物諮詢 -->
+        <a href="https://forms.gle/qLogwBVg27Yr4HyV6" target="_blank" class="mobile-btn-card">
+            <div class="card-icon">💬</div>
+            <div class="card-content">
+                <div class="card-title">藥物諮詢紀錄單</div>
+                <div class="card-desc">民眾與醫護藥物諮詢問題紀錄</div>
+            </div>
+        </a>
+
+        <!-- 藥物使用評估 -->
+        <a href="https://forms.gle/3HMZCxXZnUewXXaXA" target="_blank" class="mobile-btn-card btn-clinical">
+            <div class="card-icon">📊</div>
+            <div class="card-content">
+                <div class="card-title">藥物使用評估紀錄表 (DUE)</div>
+                <div class="card-desc">特定藥物適當性評估登記</div>
+            </div>
+        </a>
+
+        <!-- 住院訪視 -->
+        <a href="https://forms.gle/E11w2Dse19hC3idP6" target="_blank" class="mobile-btn-card btn-clinical">
+            <div class="card-icon">🏥</div>
+            <div class="card-content">
+                <div class="card-title">住院訪視紀錄單</div>
+                <div class="card-desc">臨床藥師巡房與住院訪視評估</div>
+            </div>
+        </a>
+
+        <!-- 藥物不良反應(簡) -->
+        <a href="https://forms.gle/7UVEHSDX34h4jWzGA" target="_blank" class="mobile-btn-card">
+            <div class="card-icon">⚡</div>
+            <div class="card-content">
+                <div class="card-title">藥物不良反應 (簡式)</div>
+                <div class="card-desc">適合忙碌時快速通報使用</div>
+            </div>
+        </a>
+
+        <!-- 給錯藥品 (放最後或最醒目處，獨立紅框防誤觸) -->
+        <a href="https://forms.gle/BFRxq41qpKB3UFZG8" target="_blank" class="mobile-btn-card btn-alert">
+            <div class="card-icon">⚠️</div>
+            <div class="card-content">
+                <div class="card-title">給錯藥品反應表</div>
+                <div class="card-desc">調劑異常與病人安全事件通報</div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>© 2026 藥劑科行動工作台<br>建議於手機瀏覽器加入主畫面捷徑</p>
+    </footer>
+
+</body>
+</html>
