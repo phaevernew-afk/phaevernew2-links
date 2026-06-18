@@ -15,7 +15,7 @@
             --color-record: #2563eb;  /* 藍色：一般紀錄 */
             --color-clinical: #0d9488;/* 綠色：臨床業務 */
             --color-alert: #dc2626;   /* 紅色：異常通報 */
-            --color-db: #7c3aed;      /* 紫色：資料庫 */
+            --color-db: #7c3aed;      /* 紫色：系統與資料庫 */
         }
 
         * {
@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
-            -webkit-tap-highlight-color: transparent; /* 移除手機點擊陰影 */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -33,7 +33,6 @@
             padding-bottom: 30px;
         }
 
-        /* 標頭：手機端縮小高度 */
         header {
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
@@ -58,10 +57,9 @@
         .list-container {
             display: flex;
             flex-direction: column;
-            gap: 10px; /* 卡片之間的間距 */
+            gap: 10px;
         }
 
-        /* 手機版核心：整塊卡片就是一個超大按鈕 */
         .mobile-btn-card {
             display: flex;
             align-items: center;
@@ -71,16 +69,14 @@
             text-decoration: none;
             color: inherit;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-            border-left: 6px solid var(--color-record); /* 左側顏色條識別 */
+            border-left: 6px solid var(--color-record);
             transition: background-color 0.1s ease;
         }
 
-        /* 手機手指按下去的觸感回饋 */
         .mobile-btn-card:active {
             background-color: #e5e7eb;
         }
 
-        /* 右側箭頭圖示 */
         .mobile-btn-card::after {
             content: "➔";
             font-size: 1.1rem;
@@ -114,12 +110,14 @@
             color: var(--text-sub);
         }
 
-        /* 根據分類調整左側邊框顏色 */
+        /* 系統與資料庫（紫色高亮） */
         .btn-db { border-left-color: var(--color-db); background-color: #faf5ff; }
         .btn-db .card-title { color: #5b21b6; }
         
+        /* 臨床業務 */
         .btn-clinical { border-left-color: var(--color-clinical); }
         
+        /* 異常通報（紅色高亮） */
         .btn-alert { border-left-color: var(--color-alert); background-color: #fef2f2; }
         .btn-alert .card-title { color: #991b1b; }
 
@@ -136,13 +134,22 @@
     <!-- 標頭 -->
     <header>
         <h1>藥劑科行動工作台</h1>
-        <p>點擊下方卡片即可直接開啟表單</p>
+        <p>點擊下方卡片即可直接開啟系統或表單</p>
     </header>
 
     <!-- 表單列表區 -->
     <div class="list-container">
 
-        <!-- 留存資料庫 (排第一，方便查詢) -->
+        <!-- 新增：院內藥品查詢系統 -->
+        <a href="https://phaevernew-afk.github.io/drug-handbook2026/" target="_blank" class="mobile-btn-card btn-db">
+            <div class="card-icon">🔍</div>
+            <div class="card-content">
+                <div class="card-title">院內藥品查詢系統</div>
+                <div class="card-desc">2026 藥品手冊、外觀與處方集查詢</div>
+            </div>
+        </a>
+
+        <!-- 留存資料庫 -->
         <a href="https://drive.google.com/drive/u/0/folders/1P3aCPh0efV4biYrsEpcFTtau2Spa5SL8" target="_blank" class="mobile-btn-card btn-db">
             <div class="card-icon">📁</div>
             <div class="card-content">
@@ -196,7 +203,7 @@
             </div>
         </a>
 
-        <!-- 給錯藥品 (放最後或最醒目處，獨立紅框防誤觸) -->
+        <!-- 給錯藥品 -->
         <a href="https://forms.gle/BFRxq41qpKB3UFZG8" target="_blank" class="mobile-btn-card btn-alert">
             <div class="card-icon">⚠️</div>
             <div class="card-content">
